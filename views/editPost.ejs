@@ -18,12 +18,14 @@
     >
       <h1 class="text-light ms-4 py-1 fs-2">Welcome To Facebook</h1>
     </nav>
-    <a href="/feed/<%= singlePost._id %>">Back</a>
+
     <div class="container-fluid px-5">
+      <a href="/feed/<%= singlePost._id %>">Back</a>
       <form
         action="/feed/edit/<%=singlePost._id%>/update-post"
         method="post"
-        class="px-4 py-4"
+        class="container my-4 py-2"
+        style="padding: 0; margin: 0"
       >
         <input
           type="text"
@@ -32,6 +34,7 @@
           value="<%= singlePost.name %>"
           maxlength="15"
           required
+          class="d-block mb-2"
         />
         <textarea
           name="message"
@@ -40,6 +43,7 @@
           rows="10"
           maxlength="40"
           required
+          class="d-block mb-2"
         >
         <%= singlePost.message %>
     </textarea

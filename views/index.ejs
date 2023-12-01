@@ -19,8 +19,8 @@
       <h1 class="text-light ms-4 py-1 fs-2">Welcome To Facebook</h1>
     </nav>
     <div class="container-fluid px-5">
-      <form action="/feed" method="post">
-        <button type="submit" class="btn-primary">Add a post</button>
+      <form action="/feed" method="post" class="container my-4 py-2">
+        <button type="submit" class="btn-primary mb-2">Add a post</button>
         <input
           type="text"
           name="name"
@@ -28,6 +28,7 @@
           placeholder="Write a name"
           maxlength="15"
           required
+          class="d-block mb-2"
         />
         <textarea
           name="message"
@@ -37,6 +38,7 @@
           maxlength="40"
           placeholder="Write your post"
           required
+          class="d-block"
         ></textarea>
       </form>
 

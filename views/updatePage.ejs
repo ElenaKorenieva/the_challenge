@@ -18,9 +18,9 @@
     >
       <h1 class="text-light ms-4 py-1 fs-2">Welcome To Facebook</h1>
     </nav>
-    <a href="/feed">Back</a>
     <div class="container-fluid px-5">
-      <h3><%= singlePost.name %></h3>
+        <a href="/feed">Back</a>
+      <h3 class="mt-2"><%= singlePost.name %></h3>
       <p class="py-2 fs-5"><%= singlePost.message %></p>
       <small class="text-muted">Posted on <%= singlePost.getDate %></small>
       <div class="d-flex flex-row gap-2">
