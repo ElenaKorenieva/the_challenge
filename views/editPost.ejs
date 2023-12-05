@@ -32,24 +32,26 @@
           name="name"
           id="name"
           value="<%= singlePost.name %>"
-          minlength="1"
-          maxlength="15"
-          required
           class="d-block mb-2"
+          required
         />
+        <% if(err){ %>
+        <p class="text-danger"><%= err['name'] %></p>
+        <% } %>
         <textarea
           name="message"
           id="message"
           cols="30"
           rows="10"
-          minlength="1"
-          maxlength="40"
-          required
           class="d-block mb-2"
+          required
         >
         <%= singlePost.message %>
     </textarea
         >
+        <% if(err){ %>
+        <p class="text-danger"><%= err['message'] %></p>
+        <% } %>
         <button type="submit" class="btn-primary">Submit</button>
       </form>
     </div>

@@ -26,20 +26,22 @@
           name="name"
           id="name"
           placeholder="Write a name"
-          maxlength="15"
-          required
           class="d-block mb-2"
         />
+        <% if(err){ %>
+        <p class="text-danger"><%= err['name'] %></p>
+        <% } %>
         <textarea
           name="message"
           id="message"
           cols="30"
           rows="10"
-          maxlength="40"
           placeholder="Write your post"
-          required
           class="d-block"
         ></textarea>
+        <% if(err){ %>
+        <p class="text-danger"><%= err['message'] %></p>
+        <% } %>
       </form>
 
       <section>

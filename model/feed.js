@@ -7,13 +7,11 @@ const postSchema = new schema(
     name: {
       type: String,
       required: true,
-      minLength: 1,
       maxLength: 15,
     },
     message: {
       type: String,
       required: true,
-      minLength: 1,
       maxLength: 40,
     },
     getDate: {

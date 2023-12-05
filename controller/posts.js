@@ -6,29 +6,21 @@ const getHomePage = (req, res) => {
 
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await post.find({}).sort({ createdAt: -1 });
-    res.render("index", { posts });
-  } catch (error) {
-    console.error(error);
+    const posts = await post.find().sort({ createdAt: -1 });
+    res.render("index", { posts, err: posts.errors });
+  } catch (err) {
     res.status(500).send("Internal Server Error");
   }
 };
 
 const addNewPost = async (req, res) => {
   try {
-    if (req.body.name.length <= 25 || req.body.message.length <= 40) {
-      const postNew = new post(req.body);
-      await postNew.save();
-      res.redirect("/feed");
-    } else {
-      const posts = await post.find({}).sort({ createdAt: -1 });
-      res.render("index", {
-        posts,
-        err: "Name or message field length is too long",
-      });
-    }
+    const newPost = new post(req.body);
+    await newPost.save();
+    res.redirect("/");
   } catch (err) {
-    console.error(err);
+    const posts = await post.find().sort({ createdAt: -1 });
+    res.render("index", { posts, err: err.errors });
   }
 };
 
@@ -45,15 +37,25 @@ const deletePost = async (req, res) => {
 };
 
 const updatePost = async (req, res) => {
-  const { postId } = req.params;
-  const singlePost = await post.findById(postId);
-  res.render("editPost", { singlePost });
+  try {
+    const { postId } = req.params;
+    const singlePost = await post.findById(postId);
+    res.render("editPost", { singlePost, err: singlePost.errors });
+  } catch (err) {
+    res.status(500).send("Internal Server Error");
+  }
 };
 
 const editPost = async (req, res) => {
-  const { postId } = req.params;
-  const newPost = await post.findByIdAndUpdate(postId, req.body);
-  res.redirect(`/feed/${newPost._id}`);
+  try {
+    const { postId } = req.params;
+    const newPost = await post.findByIdAndUpdate(postId, req.body);
+    res.redirect(`/feed/${newPost._id}`);
+  } catch (err) {
+    const { postId } = req.params;
+    const newPost = await post.findByIdAndUpdate(postId, req.body);
+    res.render("editPost", { newPost, err: err.errors });
+  }
 };
 module.exports = {
   getHomePage,
